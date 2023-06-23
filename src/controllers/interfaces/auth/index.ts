@@ -1,11 +1,11 @@
+import type { IRegisterResponse } from '../../../models/services/interfaces/user'
+
 interface IAuthRequest {
   email: string
   password: string
 }
 
-interface IAuthResponse {
-  token: string
-}
+type IAuthResponse = IRegisterResponse
 
 export type {
   IAuthRequest,

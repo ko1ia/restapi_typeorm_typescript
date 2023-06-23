@@ -18,6 +18,3 @@ exports.authRouter = router;
 router.post('/registration', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     yield controller.registration(req, res);
 }));
-router.post('/login', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    yield controller.login(req, res);
-}));

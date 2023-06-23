@@ -26,9 +26,14 @@ __decorate([
     __metadata("design:type", String)
 ], User.prototype, "password", void 0);
 __decorate([
+    (0, typeorm_1.Column)('boolean', { default: false }),
+    __metadata("design:type", Boolean)
+], User.prototype, "isActive", void 0);
+__decorate([
     (0, typeorm_1.Column)(),
+    (0, typeorm_1.Generated)('uuid'),
     __metadata("design:type", String)
-], User.prototype, "token", void 0);
+], User.prototype, "uuid", void 0);
 exports.User = User = __decorate([
     (0, typeorm_1.Entity)()
 ], User);

@@ -7,6 +7,7 @@ import type { Express } from 'express'
 import { authRouter } from './src/routes'
 
 import { DataBase } from './src/data-access'
+import cookieParser from 'cookie-parser'
 
 config()
 const app: Express = express()
@@ -20,7 +21,8 @@ DataBase.
     console.error('Error during Data Source initialization:', err)
   })
 
-app .use(json())
+app.use(json())
+app.use(cookieParser())
 app.use('/api', authRouter)
 
 app.listen(port, () => {

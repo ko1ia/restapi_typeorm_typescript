@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column, BaseEntity } from 'typeorm'
+import { Entity, PrimaryGeneratedColumn, Column, BaseEntity, Generated } from 'typeorm'
 
 @Entity()
 export class User extends BaseEntity {
@@ -12,7 +12,11 @@ export class User extends BaseEntity {
   @Column()
     password: string
 
+  @Column('boolean', { default: false })
+    isActive: boolean
+
   @Column()
-    token: string
+  @Generated('uuid')
+    uuid: string
 
 }
