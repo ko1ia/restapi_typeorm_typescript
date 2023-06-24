@@ -1,8 +1,8 @@
-import type { IAuthRequest, RequestBody, IAuthResponse } from '../interfaces'
-import type { Response } from 'express'
-
 import { UserService } from '../../models/services'
+
 import type { IUserService } from '../../models/services/interfaces/user'
+import type { IAuthRequest, RequestBody } from '../interfaces'
+import type { NextFunction, Response } from 'express'
 
 class AuthController {
 
@@ -12,12 +12,16 @@ class AuthController {
     this._userService = new UserService()
   }
 
-  public async registration (req: RequestBody<IAuthRequest>, res: Response<unknown>): Promise<void> {
-    const { email, password } = req.body
+  public async registration (req: RequestBody<IAuthRequest>, res: Response<unknown>, next: NextFunction): Promise<void> {
+    try {
+      const { email, password } = req.body
 
-    const userData = await this._userService.registration({ email, password })
-    res.cookie('refreshCookie', userData.refreshToken, { maxAge: 2592000000, httpOnly: true })
-    res.json(userData)
+      const userData = await this._userService.registration({ email, password })
+      res.cookie('refreshCookie', userData.refreshToken, { maxAge: 2592000000, httpOnly: true })
+      res.json(userData)
+    } catch (e) {
+      next(e)
+    }
   }
 
   // public async login (req: RequestBody<IAuthRequest>, res: Response): Promise<void> {

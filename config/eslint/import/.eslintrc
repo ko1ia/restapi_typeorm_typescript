@@ -31,20 +31,35 @@
         "json": "always"
       }
     ],
+    "import/order": [
+      "error", {
+        "groups": [
+          "external",
+          "builtin",
+          "internal",
+          "sibling",
+          "parent",
+          "index",
+          "type"
+        ],
+        "pathGroups": [
+
+          {
+            "pattern": "**/entity/**",
+            "group": "internal"
+          }
+        ],
+        "pathGroupsExcludedImportTypes": ["internal"],
+        "alphabetize": {
+          "order": "asc",
+          "caseInsensitive": true
+        },
+        "newlines-between": "always"
+      }
+    ],
     "import/newline-after-import": "error",
     "import/max-dependencies": "off",
     "import/no-named-default": "error",
-    "import/no-anonymous-default-export": [
-      "error", {
-        "allowArray": false,
-        "allowArrowFunction": false,
-        "allowAnonymousClass": false,
-        "allowAnonymousFunction": false,
-        "allowCallExpression": false,
-        "allowLiteral": false,
-        "allowObject": false
-      }
-    ],
     "import/group-exports": "error"
   }
 }

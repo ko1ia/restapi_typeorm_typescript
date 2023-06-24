@@ -1,5 +1,5 @@
-import type { User } from '../../../entity/User'
 import type { Token } from '../../../entity/Token'
+import type { User } from '../../../entity/User'
 
 interface ITokenResponse {
   accessToken: string

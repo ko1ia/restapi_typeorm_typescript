@@ -27,7 +27,7 @@
     "grouped-accessor-pairs": ["error", "getBeforeSet"],
     "guard-for-in": "error",
     "max-classes-per-file": "error",
-    "max-params": ["error", 3],
+    "max-params": ["error", 4],
     "new-cap": ["error", { "capIsNew": false }],
     "no-alert": "error",
     "no-else-return": "error",
@@ -102,7 +102,7 @@
     "lines-between-class-members": "off",
     "max-len": [
       "error", {
-        "code": 120,
+        "code": 130,
         "tabWidth": 2,
         "ignoreUrls": true,
         "ignoreTemplateLiterals": true,

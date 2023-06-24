@@ -25,16 +25,16 @@ var __importStar = (this && this.__importStar) || function (mod) {
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
-var _a;
 Object.defineProperty(exports, "__esModule", { value: true });
-const express_1 = __importStar(require("express"));
-const dotenv_1 = require("dotenv");
-const routes_1 = require("./src/routes");
-const data_access_1 = require("./src/data-access");
 const cookie_parser_1 = __importDefault(require("cookie-parser"));
+const dotenv_1 = require("dotenv");
+const express_1 = __importStar(require("express"));
+const data_access_1 = require("./src/data-access");
+const error_1 = require("./src/middlewares/error");
+const routes_1 = require("./src/routes");
 (0, dotenv_1.config)();
 const app = (0, express_1.default)();
-const port = (_a = process.env.PORT) !== null && _a !== void 0 ? _a : 8080;
+const port = process.env.PORT ?? 8080;
 data_access_1.DataBase.
     initialize().
     then(() => {
@@ -46,6 +46,7 @@ data_access_1.DataBase.
 app.use((0, express_1.json)());
 app.use((0, cookie_parser_1.default)());
 app.use('/api', routes_1.authRouter);
+app.use(error_1.ErrorMiddleware);
 app.listen(port, () => {
     console.log(`[server]: Server is running at http://localhost:${port}`);
 });

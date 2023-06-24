@@ -1,8 +1,10 @@
+import { sign } from 'jsonwebtoken'
+
 import { DataBase } from '../../../data-access'
 import { Token } from '../../entity/Token'
-import { sign } from 'jsonwebtoken'
-import type { ITokenResponse, ITokenService } from '../interfaces/token'
+
 import type { User } from '../../entity/User'
+import type { ITokenResponse, ITokenService } from '../interfaces/token'
 import type { FindOptionsWhere } from 'typeorm'
 
 const TokenModel = DataBase.getRepository(Token)

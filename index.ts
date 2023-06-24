@@ -1,13 +1,12 @@
+import cookieParser from 'cookie-parser'
+import { config } from 'dotenv'
 import express, { json } from 'express'
 
-import { config } from 'dotenv'
-
-import type { Express } from 'express'
-
+import { DataBase } from './src/data-access'
+import { ErrorMiddleware } from './src/middlewares/error'
 import { authRouter } from './src/routes'
 
-import { DataBase } from './src/data-access'
-import cookieParser from 'cookie-parser'
+import type { Express } from 'express'
 
 config()
 const app: Express = express()
@@ -20,10 +19,11 @@ DataBase.
   catch((err) => {
     console.error('Error during Data Source initialization:', err)
   })
-
 app.use(json())
+
 app.use(cookieParser())
 app.use('/api', authRouter)
+app.use(ErrorMiddleware)
 
 app.listen(port, () => {
   console.log(`[server]: Server is running at http://localhost:${port}`)
